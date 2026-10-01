@@ -1,0 +1,155 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding-top: env(safe-area-inset-top, 0px);
+  color: var(--color-text);
+}
+
+.onDark {
+  color: var(--color-on-photo);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin: 0 var(--gutter);
+  padding: var(--space-md) 0 var(--space-sm);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+}
+
+.monogram {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  list-style: none;
+}
+
+/* Small-caps style links with an underline that draws in */
+.link {
+  position: relative;
+  display: inline-block;
+  padding: 0.4rem 0;
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.link:hover::after,
+.active::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Portfolio dropdown ---------- */
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.chevron {
+  transition: transform 0.25s ease;
+}
+
+.dropdown[data-open="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  min-width: 13rem;
+  padding: 0.5rem 0;
+  list-style: none;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 12px 30px rgba(58, 46, 42, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+/* Invisible bridge so the menu doesn't close while the mouse crosses the gap */
+.menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.75rem;
+  height: 0.75rem;
+}
+
+.dropdown[data-open="true"] .menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Open on hover too, but only on devices with a real mouse */
+@media (hover: hover) {
+  .dropdown:hover .menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.menuLink {
+  display: block;
+  padding: 0.6rem 1.25rem;
+  font-size: var(--text-sm);
+  transition: background 0.2s ease;
+}
+
+.menuLink:hover {
+  background: color-mix(in srgb, var(--color-surface) 45%, transparent);
+}
+
+.menuLink[aria-current="page"] {
+  color: var(--color-accent);
+}
+
+/* Temporary until the phone menu exists */
+@media (max-width: 640px) {
+  .links {
+    gap: 1rem;
+  }
+  .link {
+    letter-spacing: 0.1em;
+  }
+}
