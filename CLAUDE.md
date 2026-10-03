@@ -26,7 +26,7 @@ It is also a class assignment whose only requirement is that the site works.
 - Next.js 16 (App Router), React 19, TypeScript. `app/` is at the project root (no `src/`). Import alias `@/` = project root.
 - Styling: plain CSS. Global design tokens in `app/globals.css`, component styles in CSS Modules. **No Tailwind.**
 - Fonts via `next/font/google` in `app/layout.tsx`: Cormorant Garamond (`--font-display`), Inter (`--font-body`), Reenie Beanie (`--font-hand`, handwritten notes).
-- Not installed yet: GSAP + ScrollTrigger (planned for the peel effect), Motion. Hosting on Vercel. CMS later.
+- Not installed: GSAP, Motion. Hosting on Vercel. CMS later.
 
 ## Conventions
 
@@ -74,7 +74,7 @@ Mockups are in `docs/mockups/`. They're AI-generated and not final; the mockups'
 
 ## Home page
 
-Sections, in order: **Hero → Editorials → About → Gallery**, then the shared **Footer** (from `layout.tsx`).
+Sections, in order: **Hero → Editorials → About → Gallery**, then the shared **Footer** (from `layout.tsx`). The sections simply scroll, connected by their torn edges (no peel or pinning effect; that idea was dropped).
 
 - Each section's bottom edge is a curve traced from the mockup, stored in `lib/edges.ts` and applied with `clip-path`. Each next section tucks up under the previous one's edge (negative top margin), with a lower `z-index` so the edge stays on top.
 - The **hero** is a bit taller than the screen. Its edge's high right end lines up with the lamp's brass arm in her photo (`edgeAnchorY` in `data/home.ts`). On load, an ivory wedge shows bottom-right as the scroll cue.
@@ -84,14 +84,10 @@ Sections, in order: **Hero → Editorials → About → Gallery**, then the shar
 - The **Gallery**: two sideways photo-booth paper strips that drift in opposite directions (approved prototype: `docs/prototypes/gallery-booth-preview.html`).
 - The **Footer** is the bottom half of the hero photo. Its top edge is the same torn curve as the hero's bottom, as if the photo was pulled apart (approved prototype: `docs/prototypes/torn-footer-preview.html`).
 
-### The peel effect (planned, not built yet)
-
-When a section's peel corner reaches the bottom of the screen, the page pins and the section peels away diagonally like a sticker, revealing the next section. Corners alternate: Hero bottom-left, Editorials bottom-right, About bottom-left. The Gallery doesn't peel. About one screen of scrolling per peel. The page bends as it lifts, and its back shows a crumpled ivory paper texture. Scrolling up reverses it. Reference: `docs/prototypes/peel-prototype.html`. It will be built as a `<PeelSection>` wrapper around each section, after a planning step.
-
 ## Progress
 
 - [x] Skeleton, design tokens, fonts, nav
 - [x] Home: Hero, Editorials (+ squiggles), About (+ handwritten list, linen, real portrait)
 - [x] Home: Gallery (placeholder tiles until her photos arrive) + shared torn-photo Footer
-- [ ] Editorial card margin notes → `docs/tasks/step-9-editorial-margin-notes.md`
-- [ ] Next: the peel effect, then the mobile pass, then the other pages
+- [x] Editorial card margin notes
+- [ ] Next: the mobile pass, then the other pages
