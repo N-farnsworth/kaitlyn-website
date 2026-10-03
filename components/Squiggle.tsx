@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useInViewOnce } from "@/lib/useInViewOnce";
 import styles from "./Squiggle.module.css";
 
 type SquiggleProps = {
@@ -14,27 +14,8 @@ type SquiggleProps = {
 };
 
 export default function Squiggle({ d, viewBox, className, draw = false, preserveAspectRatio }: SquiggleProps) {
-  const ref = useRef<SVGSVGElement>(null);
-  const [drawn, setDrawn] = useState(!draw);
-
-  useEffect(() => {
-    if (!draw || drawn) return;
-    const el = ref.current;
-    if (!el) return;
-
-    // Watch for the line coming on screen, draw it once, then stop watching
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setDrawn(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.6 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [draw, drawn]);
+  const [ref, inView] = useInViewOnce<SVGSVGElement>(0.6);
+  const drawn = !draw || inView;
 
   return (
     <svg

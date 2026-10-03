@@ -52,3 +52,23 @@ export const editorialsEdge: readonly EdgePoint[] = [
   [0, 0.816], [0.1, 0.92], [0.2, 1], [0.3, 0.895], [0.4, 0.63], [0.51, 0.368],
   [0.6, 0.5], [0.7, 0.684], [0.79, 0.842], [0.9, 0.29], [1, 0],
 ];
+
+// About → Gallery boundary. Lowest just right of center, highest at the right end.
+export const aboutEdge: readonly EdgePoint[] = [
+  [0, 0.265], [0.143, 0.206], [0.286, 0.176], [0.429, 0.118], [0.571, 0], [0.629, 0.029],
+  [0.686, 0.206], [0.743, 0.412], [0.8, 0.618], [0.857, 0.794], [0.914, 0.912], [1, 1],
+];
+
+// The About photo's curved right side. Here each point is
+// [y, x]: y runs 0 → 1 down the section, x is how far across the photo reaches.
+export const aboutPhotoEdge: readonly EdgePoint[] = [
+  [0, 0.516], [0.077, 0.507], [0.138, 0.504], [0.2, 0.501], [0.322, 0.503], [0.444, 0.507],
+  [0.628, 0.513], [0.69, 0.516], [0.751, 0.517], [0.812, 0.521], [0.874, 0.53], [0.935, 0.541],
+  [1, 0.551],
+];
+
+// A clip-path that keeps everything left of a curved vertical edge.
+export function rightEdgeClipPath(points: readonly EdgePoint[]): string {
+  const curve = smooth(points).map(([y, x]) => `${(x * 100).toFixed(2)}% ${(y * 100).toFixed(2)}%`);
+  return `polygon(0% 0%, ${curve.join(", ")}, 0% 100%)`;
+}

@@ -1,0 +1,19 @@
+.list {
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  width: max-content;
+}
+
+/* The real text stays for layout, screen readers and search engines.
+   The canvas on top shows the pen drawing it. */
+.text {
+  color: transparent;
+}
+
+.canvas {
+  position: absolute;
+  pointer-events: none;
+}

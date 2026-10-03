@@ -18,6 +18,7 @@
   /* Fonts (the variables come from next/font in layout.tsx) */
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-hand: var(--font-reenie), "Segoe Print", cursive;
 
   /* Type scale: clamp(min, fluid, max) grows smoothly with screen width */
   --text-xs: 0.75rem;   /* small-caps labels */
@@ -39,6 +40,11 @@
   /* Layout */
   --content-width: 1200px;
   --gutter: clamp(1.25rem, 4vw, 3rem);
+
+  /* How tall each home section's wavy bottom edge is.
+    Lives here because the next section tucks up under it. */
+  --editorials-edge: clamp(2rem, 5.4vw, 6rem);
+  --about-edge: clamp(1.75rem, 4.86vw, 5.5rem);
 }
 
 /* ============ Reset ============ */

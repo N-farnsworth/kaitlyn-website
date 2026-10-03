@@ -1,0 +1,130 @@
+.about {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  min-height: clamp(30rem, 40vw, 46rem);
+  /* Tuck up under the Editorials' wavy edge so no gap shows */
+  margin-top: calc(-1 * var(--editorials-edge));
+  padding:
+    calc(var(--editorials-edge) + var(--space-lg))
+    var(--gutter)
+    calc(var(--about-edge) + var(--space-lg))
+    0;
+  background: var(--color-bg);
+}
+
+/* ---------- Photo (left, with the curved right side) ---------- */
+.photo {
+  position: absolute;
+  inset: 0;
+  clip-path: var(--photo-clip);
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* ---------- Text (right) ---------- */
+.content {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-lg);
+  width: 46%;
+  margin-left: 54%;
+  padding-left: clamp(1rem, 2vw, 2rem);
+}
+
+.eyebrow {
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: clamp(2.25rem, 1.5rem + 2.4vw, 3.75rem);
+  font-weight: 300;
+  line-height: 1;
+}
+
+.title span {
+  display: block;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 32rem;
+  margin-top: var(--space-md);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.link {
+  display: inline-flex;
+  gap: 0.6rem;
+  margin-top: var(--space-md);
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid currentColor;
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.link span {
+  transition: transform 0.3s ease;
+}
+
+.link:hover span {
+  transform: translateX(5px);
+}
+
+/* ---------- Handwritten notes ---------- */
+.notes {
+  list-style: none;
+  font-family: var(--font-hand);
+  font-size: clamp(1.35rem, 1rem + 0.7vw, 1.75rem);
+  line-height: 1.15;
+  transform: rotate(-8deg);
+}
+
+/* The little pen dash under the list, like the mockup */
+.notes::after {
+  content: "";
+  display: block;
+  width: 2.2rem;
+  height: 1px;
+  margin-top: 0.6rem;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* ---------- Smaller screens (refined in the mobile pass) ---------- */
+@media (max-width: 1100px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+  .notes {
+    transform: rotate(-4deg);
+  }
+}
+
+@media (max-width: 860px) {
+  .about {
+    display: block;
+    padding: var(--editorials-edge) 0 calc(var(--about-edge) + var(--space-lg));
+  }
+  .photo {
+    position: relative;
+    height: 70vw;
+    clip-path: none;
+  }
+  .content {
+    width: auto;
+    margin-left: 0;
+    padding: var(--space-lg) var(--gutter) 0;
+  }
+}

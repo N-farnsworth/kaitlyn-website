@@ -66,7 +66,7 @@ export default function Editorials() {
       </section>
 
       {/* Sits on top of the seam, so it isn't cut off by the section's edge */}
-      <Squiggle {...editorialsSeamSquiggle} preserveAspectRatio="none" className={styles.seamSquiggle} />
+      <Squiggle {...editorialsSeamSquiggle} draw preserveAspectRatio="none" className={styles.seamSquiggle} />
     </div>
   );
 }

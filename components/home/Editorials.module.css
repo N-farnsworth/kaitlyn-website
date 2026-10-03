@@ -1,8 +1,6 @@
 .wrap {
-  /* ---- Tuning knob: how tall the wavy bottom edge is ---- */
-  --editorials-edge: clamp(2rem, 5.4vw, 6rem);
-
   position: relative;
+  z-index: 2;
 }
 
 .editorials {
@@ -126,6 +124,7 @@
   height: calc(var(--editorials-edge) * 70 / 38);
   bottom: calc(var(--editorials-edge) * -33 / 38);
   z-index: 2;
+  stroke-width: 0.75;
 }
 
 /* ---------- Smaller screens (refined in the mobile pass) ---------- */
