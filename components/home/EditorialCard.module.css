@@ -110,8 +110,10 @@
 .circle {
   left: 50%;
   top: 55%;
-  width: 2.6em;
-  height: 1.625em;
+  width: 2.2em;
+  height: 1.375em;
+  /* globals.css caps svgs at 100% of their container (here, just the number) */
+  max-width: none;
   transform: translate(-50%, -50%);
 }
 
