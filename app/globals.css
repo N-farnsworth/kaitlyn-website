@@ -126,3 +126,23 @@ button {
     scroll-behavior: auto !important;
   }
 }
+
+/* ============ Hero edge size (shared) ============ */
+/* Used by the hero, the footer (its torn "other half") and the gallery.
+   Needs the inline variables from lib/heroEdge.ts on the same element. */
+.hero-edge {
+  --hero-overhang: clamp(1.5rem, 3vw, 3rem);
+  --hero-height: calc(100svh + var(--hero-overhang));
+  --hero-edge: max(
+    4rem,
+    calc((1 - var(--focus-y)) * var(--hero-height) - var(--edge-anchor))
+  );
+}
+
+/* Tall, narrow screens (phones): the photo crops differently, so use the
+   mockup's slant instead. Revisited in the mobile pass. */
+@media (max-aspect-ratio: 9 / 8) {
+  .hero-edge {
+    --hero-edge: clamp(4.5rem, 10.7vw, 11rem);
+  }
+}

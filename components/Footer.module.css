@@ -1,0 +1,107 @@
+.footer {
+  position: relative;
+  z-index: 3;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* Tuck up under whatever section is above, so the torn edge sits on it */
+  margin-top: calc(-1 * var(--hero-edge));
+  min-height: calc(var(--hero-edge) + clamp(22rem, 50svh, 34rem));
+  padding: calc(var(--hero-edge) + var(--space-xl)) var(--gutter) var(--space-md);
+  color: var(--color-on-photo);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+/* Show the top of the photo first: that's the torn side */
+.image {
+  object-fit: cover;
+  object-position: 50% 0%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgba(30, 22, 19, 0.25) 0%,
+    rgba(30, 22, 19, 0.55) 45%,
+    rgba(30, 22, 19, 0.8) 100%
+  );
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.heading {
+  font-size: clamp(3rem, 2rem + 4vw, 6rem);
+  font-weight: 300;
+  line-height: 0.95;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid transparent;
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: border-color 0.3s ease;
+}
+
+.link:hover {
+  border-color: currentColor;
+}
+
+.icon {
+  display: inline-flex;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.legal {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-sm);
+  border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  font-size: var(--text-xs);
+  opacity: 0.8;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

@@ -4,11 +4,11 @@ import Link from "next/link";
 import Squiggle from "@/components/Squiggle";
 import { editorials } from "@/data/editorials";
 import { editorialsSection } from "@/data/home";
-import { editorialsEdge, bottomEdgeClipPath } from "@/lib/edges";
+import { editorialsSeam, seamClipPath } from "@/lib/edges";
 import { editorialsHeadingSquiggle, editorialsSeamSquiggle } from "@/lib/squiggles";
 import styles from "./Editorials.module.css";
 
-const clipPath = bottomEdgeClipPath(editorialsEdge, "--editorials-edge");
+const clipPath = seamClipPath(editorialsSeam, "--editorials-edge", 910, 38);
 
 // Slight tilt on each photo's top edge, like the mockup: [left side, right side]
 const tilts = [

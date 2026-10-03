@@ -35,9 +35,42 @@ export const aboutSection = {
   link: { label: "More about me", href: "/about" },
   notes: ["Books.", "Cats.", "Good coffee.", "Board games.", "Big ideas.", "Always curious."],
   image: {
-    // Placeholder until her new headshots arrive
-    src: "/images/home/about.jpg",
-    alt: "Kaitlyn smiling in a car, holding a large brown teddy bear",
-    focus: "50% 28%",
+    src: "/images/home/about-kaitlyn.jpg",
+    alt: "Kaitlyn smiling down at a black-and-white cat in her arms",
+    focus: "53% 35%",
   },
+};
+
+export type GalleryPhoto = {
+  /** Leave out src to show a placeholder tile */
+  src?: string;
+  alt: string;
+};
+
+export type GalleryStrip = {
+  title: string;
+  direction: "left" | "right";
+  /** Drift speed in CSS pixels per second */
+  speed: number;
+  photos: GalleryPhoto[];
+};
+
+const placeholders = (count: number): GalleryPhoto[] =>
+  Array.from({ length: count }, () => ({ alt: "Placeholder" }));
+
+export const gallerySection: {
+  heading: string;
+  intro: string;
+  link: { label: string; href: string };
+  strips: GalleryStrip[];
+} = {
+  heading: "The Gallery",
+  intro:
+    "A curated collection of previous designs, visuals, imagery, and some behind-the-scenes moments that shapes my creative perspective.",
+  link: { label: "Explore the gallery", href: "/portfolio/gallery" },
+  // Placeholder titles and tiles until her photos arrive (6+ per strip, ideally 10–15)
+  strips: [
+    { title: "campaigns", direction: "left", speed: 34, photos: placeholders(10) },
+    { title: "behind the scenes", direction: "right", speed: 28, photos: placeholders(10) },
+  ],
 };

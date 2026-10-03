@@ -4,14 +4,24 @@
   display: flex;
   align-items: center;
   min-height: clamp(30rem, 40vw, 46rem);
-  /* Tuck up under the Editorials' wavy edge so no gap shows */
-  margin-top: calc(-1 * var(--editorials-edge));
+  /* Tuck up under the Editorials' seam (including the squiggle's hook) so no gap shows */
+  margin-top: calc(-1 * var(--editorials-edge) * 71 / 38);
   padding:
-    calc(var(--editorials-edge) + var(--space-lg))
+    calc(var(--editorials-edge) * 71 / 38 + var(--space-lg))
     var(--gutter)
     calc(var(--about-edge) + var(--space-lg))
     0;
-  background: var(--color-bg);
+  background-color: var(--color-bg);
+}
+
+/* Linen texture, faded to 10% over the ivory */
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/images/home/linen.jpg") center / cover;
+  opacity: 0.1;
+  pointer-events: none;
 }
 
 /* ---------- Photo (left, with the curved right side) ---------- */
@@ -23,6 +33,16 @@
 
 .image {
   object-fit: cover;
+}
+
+/* The photo only shows on the left, so fit it to that area,
+   not the whole section, or her face lands on the curve */
+.frame {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 56%;
 }
 
 /* ---------- Text (right) ---------- */
@@ -115,7 +135,7 @@
 @media (max-width: 860px) {
   .about {
     display: block;
-    padding: var(--editorials-edge) 0 calc(var(--about-edge) + var(--space-lg));
+        padding: calc(var(--editorials-edge) * 71 / 38) 0 calc(var(--about-edge) + var(--space-lg));
   }
   .photo {
     position: relative;
@@ -126,5 +146,9 @@
     width: auto;
     margin-left: 0;
     padding: var(--space-lg) var(--gutter) 0;
+  }
+
+  .frame {
+    width: 100%;
   }
 }

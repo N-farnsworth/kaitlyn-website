@@ -1,0 +1,86 @@
+.gallery {
+  position: relative;
+  z-index: 0;
+  /* Tuck up under About's wavy edge so no gap shows */
+  margin-top: calc(-1 * var(--about-edge));
+  /* Bottom: room for the footer's torn edge, which tucks up over this section */
+  padding:
+    calc(var(--about-edge) + var(--space-lg))
+    0
+    calc(var(--hero-edge) + var(--space-xl));
+  background: var(--color-bg);
+}
+
+/* ---------- Heading row ---------- */
+.header {
+  display: grid;
+  grid-template-columns: auto minmax(16rem, 30rem) auto;
+  align-items: end;
+  gap: var(--space-lg);
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 var(--gutter) var(--space-md);
+}
+
+.title {
+  font-size: clamp(2.75rem, 2rem + 3.5vw, 5rem);
+  font-weight: 300;
+}
+
+.intro {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.9rem;
+}
+
+.link {
+  display: inline-flex;
+  gap: 0.6rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid currentColor;
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.link span {
+  transition: transform 0.3s ease;
+}
+
+.link:hover span {
+  transform: translateX(5px);
+}
+
+.pause {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------- Strips ---------- */
+.strips {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(0.25rem, 1vw, 0.75rem);
+  padding-top: var(--space-md);
+}
+
+@media (max-width: 860px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    align-items: flex-start;
+  }
+}

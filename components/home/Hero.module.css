@@ -1,16 +1,4 @@
 .hero {
-  /* ---- Tuning knobs ---- */
-  /* How far the low left end of the edge sits below the screen on load */
-  --hero-overhang: clamp(1.5rem, 3vw, 3rem);
-  --hero-height: calc(100svh + var(--hero-overhang));
-  /* Edge height: solved so the high right end lines up with the photo's anchor
-     point (edgeAnchorY in data/home.ts). Works whenever the photo fills the
-     width, which is every laptop and desktop window. */
-  --hero-edge: max(
-    4rem,
-    calc((1 - var(--focus-y)) * var(--hero-height) - var(--edge-anchor))
-  );
-
   position: relative;
   isolation: isolate;
   display: flex;
@@ -19,14 +7,6 @@
   height: var(--hero-height);
   min-height: 34rem; /* safety net for very short windows */
   color: var(--color-on-photo);
-}
-
-/* Tall, narrow screens (phones): the photo crops differently, so use the
-   mockup's slant instead. Revisited in the mobile pass. */
-@media (max-aspect-ratio: 9 / 8) {
-  .hero {
-    --hero-edge: clamp(4.5rem, 10.7vw, 11rem);
-  }
 }
 
 .media {

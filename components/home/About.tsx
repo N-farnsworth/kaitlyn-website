@@ -13,15 +13,17 @@ const photoStyle = { "--photo-clip": rightEdgeClipPath(aboutPhotoEdge) } as CSSP
 export default function About() {
   return (
     <section className={styles.about} style={sectionStyle} aria-labelledby="about-title">
-      <div className={styles.photo} style={photoStyle}>
-        <Image
-          src={aboutSection.image.src}
-          alt={aboutSection.image.alt}
-          fill
-          sizes="(max-width: 860px) 100vw, 55vw"
-          className={styles.image}
-          style={{ objectPosition: aboutSection.image.focus }}
-        />
+        <div className={styles.photo} style={photoStyle}>
+            <div className={styles.frame}>
+            <Image
+                src={aboutSection.image.src}
+                alt={aboutSection.image.alt}
+                fill
+                sizes="(max-width: 860px) 100vw, 56vw"
+                className={styles.image}
+                style={{ objectPosition: aboutSection.image.focus }}
+            />
+            </div>
       </div>
 
       <div className={styles.content}>
