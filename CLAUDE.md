@@ -78,8 +78,9 @@ Sections, in order: **Hero → Editorials → About → Gallery**, then the shar
 
 - Each section's bottom edge is a curve traced from the mockup, stored in `lib/edges.ts` and applied with `clip-path`. Each next section tucks up under the previous one's edge (negative top margin), with a lower `z-index` so the edge stays on top.
 - The **hero** is a bit taller than the screen. Its edge's high right end lines up with the lamp's brass arm in her photo (`edgeAnchorY` in `data/home.ts`). On load, an ivory wedge shows bottom-right as the scroll cue.
-- The **Editorials** heading squiggle and the Editorials→About seam squiggle draw themselves once when first seen (`components/Squiggle.tsx`).
-- The **About** handwritten list writes itself with a pen effect once when first seen (`components/HandwrittenList.tsx`, `lib/handwriting.ts`).
+- The **Editorials** heading squiggle and the Editorials→About seam squiggle draw themselves once when first seen (`components/Squiggle.tsx`). The Editorials→About seam (`editorialsSeam` in `lib/edges.ts`) follows that squiggle exactly, including its hook.
+- **Editorial cards** get "margin notes" on hover: the pen circles the number, underlines the title, writes a short handwritten note next to the arrow, then draws a small doodle (approved prototype: `docs/prototypes/editorial-notes-preview.html`).
+- The **About** section: her portrait on the left (fitted to the visible area), a 10% linen texture behind the text, and a handwritten list that writes itself with a pen effect once when first seen (`components/HandwrittenList.tsx`, `lib/handwriting.ts`).
 - The **Gallery**: two sideways photo-booth paper strips that drift in opposite directions (approved prototype: `docs/prototypes/gallery-booth-preview.html`).
 - The **Footer** is the bottom half of the hero photo. Its top edge is the same torn curve as the hero's bottom, as if the photo was pulled apart (approved prototype: `docs/prototypes/torn-footer-preview.html`).
 
@@ -90,6 +91,7 @@ When a section's peel corner reaches the bottom of the screen, the page pins and
 ## Progress
 
 - [x] Skeleton, design tokens, fonts, nav
-- [x] Home: Hero, Editorials (+ squiggles), About (+ handwritten list)
-- [ ] Home: Gallery + shared Footer → `docs/tasks/step-8-gallery-and-footer.md`
+- [x] Home: Hero, Editorials (+ squiggles), About (+ handwritten list, linen, real portrait)
+- [x] Home: Gallery (placeholder tiles until her photos arrive) + shared torn-photo Footer
+- [ ] Editorial card margin notes → `docs/tasks/step-9-editorial-margin-notes.md`
 - [ ] Next: the peel effect, then the mobile pass, then the other pages

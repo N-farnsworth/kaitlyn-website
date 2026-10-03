@@ -1,11 +1,9 @@
-import type { CSSProperties } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import Squiggle from "@/components/Squiggle";
 import { editorials } from "@/data/editorials";
 import { editorialsSection } from "@/data/home";
 import { editorialsSeam, seamClipPath } from "@/lib/edges";
 import { editorialsHeadingSquiggle, editorialsSeamSquiggle } from "@/lib/squiggles";
+import EditorialCard from "./EditorialCard";
 import styles from "./Editorials.module.css";
 
 const clipPath = seamClipPath(editorialsSeam, "--editorials-edge", 910, 38);
@@ -34,34 +32,11 @@ export default function Editorials() {
         </div>
 
         <ol className={styles.grid}>
-          {editorials.map((editorial, i) => {
-            const [left, right] = tilts[i % tilts.length];
-            const photoStyle = { "--tilt-left": left, "--tilt-right": right } as CSSProperties;
-            const contain = editorial.cover.fit === "contain";
-
-            return (
-              <li key={editorial.slug}>
-                <Link href={`/portfolio/${editorial.slug}`} className={styles.card}>
-                  <span className={styles.number} aria-hidden="true">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className={`${styles.photo} ${contain ? styles.contain : ""}`} style={photoStyle}>
-                    <Image
-                      src={editorial.cover.src}
-                      alt={editorial.cover.alt}
-                      fill
-                      sizes="(max-width: 540px) 100vw, (max-width: 960px) 50vw, 25vw"
-                      className={styles.image}
-                      style={{ objectPosition: editorial.cover.focus ?? "50% 50%" }}
-                    />
-                  </div>
-                  <h3 className={styles.cardTitle}>{editorial.title}</h3>
-                  <p className={styles.summary}>{editorial.summary}</p>
-                  <span className={styles.arrow} aria-hidden="true">→</span>
-                </Link>
-              </li>
-            );
-          })}
+          {editorials.map((editorial, i) => (
+            <li key={editorial.slug}>
+              <EditorialCard editorial={editorial} index={i} tilt={tilts[i % tilts.length]} />
+            </li>
+          ))}
         </ol>
       </section>
 

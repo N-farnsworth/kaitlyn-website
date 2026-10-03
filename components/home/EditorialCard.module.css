@@ -1,0 +1,160 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+}
+
+.number {
+  position: relative;
+  align-self: flex-start;
+  margin-left: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-surface);
+  clip-path: polygon(0 var(--tilt-left), 100% var(--tilt-right), 100% 100%, 0 100%);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* The book cover: shown whole, floating on the taupe background */
+.contain .image {
+  object-fit: contain;
+  padding: 16% 14%;
+  filter: drop-shadow(0 10px 18px rgba(58, 46, 42, 0.25));
+}
+
+.card:hover .image {
+  transform: scale(1.04);
+}
+
+/* Shrinks to the title's width, so the underline matches it */
+.titleWrap {
+  position: relative;
+  align-self: flex-start;
+  margin-top: 0.4rem;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.summary {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+/* Arrow, then the handwritten note and its doodle */
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3.6rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.card:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* ---------- Margin notes (approved in docs/prototypes/editorial-notes-preview.html) ---------- */
+.note {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  transform: rotate(-4deg);
+  transform-origin: left center;
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: var(--font-hand);
+  color: var(--color-accent);
+  /* 26px on a laptop, a little smaller on narrow screens so long notes fit */
+  font-size: clamp(1.3rem, 1rem + 0.6vw, 1.625rem);
+}
+
+/* Pen marks: drawn in while the card is active (.on) */
+.pen {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pen path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.45, 0.05, 0.25, 1);
+}
+
+.circle {
+  left: -0.75rem;
+  top: -0.7rem;
+  width: 3.4rem;
+  height: 2.6rem;
+}
+
+.underline {
+  left: 0;
+  bottom: -0.35rem;
+  width: 100%;
+  height: 0.6rem;
+}
+
+.underline path {
+  transition-delay: 0.2s;
+}
+
+.doodle {
+  position: relative;
+  flex: none;
+  width: 2.1rem;
+  height: 2.1rem;
+}
+
+.doodle path {
+  transition-delay: 0s;
+}
+
+.on .pen path {
+  stroke-dashoffset: 0;
+}
+
+/* Starts once the note is written (the card sets --doodle-delay) */
+.on .doodle path {
+  transition-duration: 0.7s;
+  transition-delay: var(--doodle-delay, 1s);
+}
+
+/* Leaving: everything retracts quickly */
+.card:not(.on) .pen path {
+  transition-duration: 0.25s;
+  transition-delay: 0s;
+}
+
+/* The global rule shortens durations but not delays, so turn transitions off */
+@media (prefers-reduced-motion: reduce) {
+  .pen path {
+    transition: none !important;
+  }
+}

@@ -10,6 +10,10 @@ export type Editorial = {
     // "contain" shows the whole image on a taupe background (used for the book cover)
     fit?: "cover" | "contain";
   };
+  /** Handwritten note shown on hover. Use "|" for a line break. */
+  note: string;
+  /** Doodle drawn after the note (keys of `doodles` in lib/squiggles.ts) */
+  doodle: "volleyball" | "wrench" | "cloche" | "shootingStar";
 };
 
 export const editorials: Editorial[] = [
@@ -22,6 +26,8 @@ export const editorials: Editorial[] = [
       src: "/images/editorials/koll.jpg",
       alt: "Two hands with taped fingers setting a white volleyball against a black background",
     },
+    note: "more than a game",
+    doodle: "volleyball",
   },
   {
     slug: "malek",
@@ -33,6 +39,8 @@ export const editorials: Editorial[] = [
       alt: "A Malek service van with blue and green branding parked on a residential street",
       focus: "30% 50%",
     },
+    note: "expertise you|can feel",
+    doodle: "wrench",
   },
   {
     slug: "admiral-catering",
@@ -44,6 +52,8 @@ export const editorials: Editorial[] = [
       alt: "A server holding a tray of smoked salmon blini outdoors",
       focus: "50% 60%",
     },
+    note: "here for any|occasion",
+    doodle: "cloche",
   },
   {
     slug: "finding-our-way",
@@ -55,6 +65,8 @@ export const editorials: Editorial[] = [
       alt: "Cover of the book Finding Our Way: Developing a Shared Pedagogy",
       fit: "contain",
     },
+    note: "find your way",
+    doodle: "shootingStar",
   },
 ];
 
