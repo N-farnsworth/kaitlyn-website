@@ -1,0 +1,106 @@
+.hero {
+  /* ---- Tuning knobs ---- */
+  /* How far the low left end of the edge sits below the screen on load */
+  --hero-overhang: clamp(1.5rem, 3vw, 3rem);
+  --hero-height: calc(100svh + var(--hero-overhang));
+  /* Edge height: solved so the high right end lines up with the photo's anchor
+     point (edgeAnchorY in data/home.ts). Works whenever the photo fills the
+     width, which is every laptop and desktop window. */
+  --hero-edge: max(
+    4rem,
+    calc((1 - var(--focus-y)) * var(--hero-height) - var(--edge-anchor))
+  );
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--hero-height);
+  min-height: 34rem; /* safety net for very short windows */
+  color: var(--color-on-photo);
+}
+
+/* Tall, narrow screens (phones): the photo crops differently, so use the
+   mockup's slant instead. Revisited in the mobile pass. */
+@media (max-aspect-ratio: 9 / 8) {
+  .hero {
+    --hero-edge: clamp(4.5rem, 10.7vw, 11rem);
+  }
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Darkens the photo where the text sits, plus a little at the top for the nav */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(to bottom, rgba(30, 22, 19, 0.35), transparent 30%),
+    linear-gradient(90deg,
+      rgba(30, 22, 19, 0.8) 0%,
+      rgba(30, 22, 19, 0.6) 38%,
+      rgba(30, 22, 19, 0.2) 70%,
+      rgba(30, 22, 19, 0.1) 100%);
+}
+
+.content {
+  width: 100%;
+  max-width: calc(44rem + 2 * var(--gutter));
+  padding:
+    clamp(5.5rem, 14svh, 9rem)
+    var(--gutter)
+    calc(var(--hero-edge) * 0.55 + var(--space-lg));
+}
+
+/* Sizes shrink on short screens so everything fits above the edge */
+.name {
+  font-size: min(var(--text-display), 14svh);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+}
+
+.name span {
+  display: block;
+}
+
+.tagline {
+  max-width: 22ch;
+  margin-top: clamp(0.75rem, 2.5svh, 1.5rem);
+  font-family: var(--font-display);
+  font-size: min(var(--text-xl), 5svh);
+  line-height: 1.2;
+}
+
+.rule {
+  width: 3.5rem;
+  height: 1px;
+  margin: clamp(0.75rem, 2.5svh, 1.5rem) 0;
+  border: 0;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 34rem;
+  line-height: 1.7;
+}
+
+/* On phones the text spans the full width, so darken more evenly */
+@media (max-width: 700px) {
+  .overlay {
+    background: linear-gradient(to bottom, rgba(30, 22, 19, 0.55), rgba(30, 22, 19, 0.75));
+  }
+}

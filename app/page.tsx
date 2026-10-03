@@ -1,4 +1,11 @@
+import Hero from "@/components/home/Hero";
+
 export default function Home() {
-  // TEMPORARY dark block so the ivory nav is visible. Replaced by the real hero next.
-  return <div style={{ height: "100vh", background: "var(--espresso)" }} />;
+  return (
+    <>
+      <Hero />
+      {/* TEMPORARY: empty space standing in for the editorials, so you can scroll */}
+      <div style={{ height: "100vh" }} />
+    </>
+  );
 }
