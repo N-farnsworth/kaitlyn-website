@@ -108,10 +108,11 @@
 }
 
 .circle {
-  left: -0.75rem;
-  top: -0.7rem;
-  width: 3.4rem;
-  height: 2.6rem;
+  left: 50%;
+  top: 55%;
+  width: 2.6em;
+  height: 1.625em;
+  transform: translate(-50%, -50%);
 }
 
 .underline {
