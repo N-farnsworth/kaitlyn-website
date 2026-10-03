@@ -1,0 +1,146 @@
+.wrap {
+  /* ---- Tuning knob: how tall the wavy bottom edge is ---- */
+  --editorials-edge: clamp(2rem, 5.4vw, 6rem);
+
+  position: relative;
+}
+
+.editorials {
+  position: relative;
+  background: var(--color-bg);
+  padding:
+    clamp(1.5rem, 1rem + 2vw, 3rem)
+    var(--gutter)
+    calc(var(--space-section) + var(--editorials-edge));
+}
+
+/* ---------- Heading row ---------- */
+.header {
+  display: grid;
+  grid-template-columns: 1fr minmax(16rem, 26rem);
+  align-items: end;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.eyebrow {
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.title {
+  position: relative;
+  font-size: clamp(2.75rem, 2rem + 3.5vw, 5rem);
+  font-weight: 300;
+}
+
+.intro {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+/* ---------- Cards ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+}
+
+.number {
+  margin-left: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-surface);
+  clip-path: polygon(0 var(--tilt-left), 100% var(--tilt-right), 100% 100%, 0 100%);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* The book cover: shown whole, floating on the taupe background */
+.contain .image {
+  object-fit: contain;
+  padding: 16% 14%;
+  filter: drop-shadow(0 10px 18px rgba(58, 46, 42, 0.25));
+}
+
+.card:hover .image {
+  transform: scale(1.04);
+}
+
+.cardTitle {
+  margin-top: 0.4rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.summary {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.arrow {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* ---------- Squiggles ---------- */
+/* Sized in em so it scales with the heading, placed like the mockup */
+.headingSquiggle {
+  left: 1em;
+  top: -0.25em;
+  width: 4.55em;
+  height: 1.35em;
+  stroke-width: 6;
+}
+
+/* Stretches across the page. Its height follows the edge, so the line
+   stays on the seam at any screen width. */
+.seamSquiggle {
+  left: 0;
+  width: 100%;
+  height: calc(var(--editorials-edge) * 70 / 38);
+  bottom: calc(var(--editorials-edge) * -33 / 38);
+  z-index: 2;
+}
+
+/* ---------- Smaller screens (refined in the mobile pass) ---------- */
+@media (max-width: 960px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

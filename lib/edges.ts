@@ -45,3 +45,10 @@ export function bottomEdgeClipPath(points: readonly EdgePoint[], sizeVar: string
     .map(([x, d]) => `${(x * 100).toFixed(2)}% calc(100% - ${d.toFixed(4)} * var(${sizeVar}))`);
   return `polygon(0% 0%, 100% 0%, ${curve.join(", ")})`;
 }
+
+// Editorials → About boundary. The lowest point is the right end,
+// where the bottom-right peel will start.
+export const editorialsEdge: readonly EdgePoint[] = [
+  [0, 0.816], [0.1, 0.92], [0.2, 1], [0.3, 0.895], [0.4, 0.63], [0.51, 0.368],
+  [0.6, 0.5], [0.7, 0.684], [0.79, 0.842], [0.9, 0.29], [1, 0],
+];

@@ -1,3 +1,5 @@
+import { editorials } from "@/data/editorials";
+
 export type NavItem = {
   label: string;
   href: string;
@@ -12,10 +14,7 @@ export const navLinks: NavItem[] = [
     label: "Portfolio",
     href: "/portfolio",
     children: [
-      { label: "Editorial 1", href: "/portfolio/editorial-1" },
-      { label: "Editorial 2", href: "/portfolio/editorial-2" },
-      { label: "Editorial 3", href: "/portfolio/editorial-3" },
-      { label: "Editorial 4", href: "/portfolio/editorial-4" },
+      ...editorials.map((e) => ({ label: e.title, href: `/portfolio/${e.slug}` })),
       { label: "Gallery", href: "/portfolio/gallery" },
     ],
   },

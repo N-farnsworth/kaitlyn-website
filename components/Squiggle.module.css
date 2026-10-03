@@ -1,0 +1,32 @@
+.squiggle {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+  fill: none;
+  stroke: var(--color-border);
+  stroke-linecap: round;
+}
+
+/* Still lines keep the same thickness even when stretched */
+.still {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1.25;
+}
+
+/* Drawn lines: hidden at first, then "inked" from start to finish */
+.drawable {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.8s cubic-bezier(0.45, 0.05, 0.25, 1) 0.2s;
+}
+
+.drawable[data-drawn="true"] {
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawable {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}

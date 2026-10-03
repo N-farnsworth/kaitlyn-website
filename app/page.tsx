@@ -1,11 +1,11 @@
 import Hero from "@/components/home/Hero";
+import Editorials from "@/components/home/Editorials";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      {/* TEMPORARY: empty space standing in for the editorials, so you can scroll */}
-      <div style={{ height: "100vh" }} />
+      <Editorials />
     </>
   );
 }

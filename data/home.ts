@@ -17,3 +17,10 @@ export const hero = {
     edgeAnchorY: 729,
   },
 };
+
+export const editorialsSection = {
+  eyebrow: "Selected work",
+  heading: "Editorials",
+  intro:
+    "Different brands, same curiosity. Each of these editorials explore a unique challenge, audience, and showcases what creative approach I ultimately decided on.",
+};
